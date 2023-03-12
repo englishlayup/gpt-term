@@ -1,0 +1,12 @@
+#!/bin/bash
+
+set -e -o pipefail
+
+# Get directory of this script
+link="$(dirname $(readlink -f $0))"
+
+base="$(dirname $link)"
+
+GPT_PATH="$base/src/gpt.py"
+
+exec python3 $GPT_PATH "$@"
