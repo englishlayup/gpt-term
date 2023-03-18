@@ -1,9 +1,9 @@
 import openai
-import os
 import sys
 import textwrap
+from pathlib import Path
 
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key_path = Path(__file__).parent.parent / ".env"
 
 
 def gpt(content, conversation=[]) -> str:
@@ -22,7 +22,7 @@ def gpt(content, conversation=[]) -> str:
 
 
 def main(args: list[str] = sys.argv[1:]):
-    #TODO: format response nicely
+    # TODO: format response nicely
     # wrapped_response = textwrap.fill(
     #     gpt(args[0]),
     #     width=80,
