@@ -5,7 +5,7 @@ from pathlib import Path
 
 openai.api_key_path = Path(__file__).parent.parent / ".env"
 
-def gpt(content, conversation=[], model="gpt-4") -> str:
+def gpt(content, conversation=[], model="gpt-3.5-turbo") -> str:
     if not conversation:
         conversation = [
             {"role": "system", "content": "You are a helpful assistant."},
@@ -27,12 +27,14 @@ def main(args: list[str] = sys.argv[1:]):
     #     width=80,
     #     replace_whitespace=False,
     # )
-    model = 'gpt-4'
+    model = 'gpt-3.5-turbo'
     # set the model if '-v' is in args
     if '-v' in args:
         version = args[args.index('-v') + 1]
         if version == '3':
             model = 'gpt-3.5-turbo'
+        elif version == '4':
+            model = 'gpt-4'
 
     sys.stdout.write(gpt(args[-1], model=model) + "\n")
 
